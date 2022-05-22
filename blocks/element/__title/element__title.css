@@ -1,0 +1,18 @@
+.element__title {
+  display: flex;
+  width: 246px;
+  /* height: 23px; */
+  margin: 25px 15px 31px 21px;
+  }
+
+@media screen and (max-width: 1279px) {
+  .element__title {
+    width: 307.5px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .element__title { 
+    width: 246px;
+  }
+}
