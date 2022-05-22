@@ -13,7 +13,7 @@ _четвертый проект написанный в рамках обуче
 *CSS
 *Java Script
 
-* [Ссылка на проект на GitHub](https://andreyzhukovspb.github.io/russian-travel/index.html )
+* [Ссылка на проект на GitHub](https://andreyzhukovspb.github.io/mesto/index.html )
 
 
 
