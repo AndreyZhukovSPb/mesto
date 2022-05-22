@@ -6,7 +6,7 @@
     "title button"
     "subtitle .";
   grid-template-columns: 294px 24px;
-  grid-template-rows: auto 18px;  
+  grid-template-rows: auto 18px;
   align-items: center;
 }
 
