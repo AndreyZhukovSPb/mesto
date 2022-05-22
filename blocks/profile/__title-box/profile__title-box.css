@@ -1,0 +1,21 @@
+.profile__title-box {
+  display: grid;
+  row-gap: 16px;
+  column-gap: 18px;
+  grid-template-areas:
+    "title button"
+    "subtitle .";
+  grid-template-columns: 294px 24px;
+  grid-template-rows: auto 18px;  
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__title-box {
+    grid-template-columns: 189px 18px;
+    row-gap: 14px;
+    column-gap: 10px;
+    padding-left: 28px;
+    margin: 26px auto 36px;
+  }
+}
