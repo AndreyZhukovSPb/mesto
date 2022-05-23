@@ -12,6 +12,10 @@
   flex-shrink: 0;
   grid-area: button;
   margin-top: 7px;
+  background-image: url(../../../images/Vector1.svg);
+  background-size: 10px 10px;
+  background-position: center;
+  background-repeat: no-repeat;
 } 
 
 .profile__edit-button:hover {
@@ -23,5 +27,6 @@
     width: 18px;
     height: 18px;
     margin-top: 1px;
+    background-size: 7.5px 7.5px;
   }
 }

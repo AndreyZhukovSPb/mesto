@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto</title>
+  <title>Место</title>
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body>
@@ -13,76 +13,57 @@
     </header>
     <main class="content">
       <section class="profile page__profile">
-        <div class="profile__avatar"></div>
-        <div class="profile__profile-info">
-          <div class="profile__title-box">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button">
-              <img class="profile__vector-edit" src="./images/Vector1.svg" alt="карандаш">
-            </button>
-            <p class="profile__subtitle">Исследователь океана</p>
-          </div>
+        <img src="./images/Kusto.png" class="profile__avatar" alt="Кусто">
+        <div class="profile__title-box">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button aria-label="Edit" type="button" class="profile__edit-button"></button>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__add-button">
-        <img class="profile__vector-add" src="./images/Vector-add_1.svg" alt="добавить">
-        </button>
+        <button aria-label="Add" type="button" class="profile__add-button"></button>
       </section>
       <section class="elements page__elements">
         <div class="element">
           <img class="element__photo" src="./images/Архыз.jpg" alt="Архыз">
-          <div class="element__title-box">
-            <div class="element__title">
-              <h2 class="element__place">Архыз</h2>
-              <button class="element__like"></button>
-            </div>
+          <div class="element__title">
+            <h2 class="element__place">Архыз</h2>
+            <button aria-label="Like" type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/Питер.jpg" alt="Питер">
-          <div class="element__title-box">
-            <div class="element__title">
-              <h2 class="element__place">Питер</h2>
-              <button class="element__like"></button>
-            </div>
+          <div class="element__title">
+            <h2 class="element__place">Питер</h2>
+            <button aria-label="Like" type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/Терскол.jpg" alt="Терскол">
-          <div class="element__title-box">
-            <div class="element__title">
-              <h2 class="element__place">Терскол</h2>
-              <button class="element__like"></button>
-            </div>
+          <div class="element__title">
+            <h2 class="element__place">Терскол</h2>
+            <button aria-label="Like" type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/Baikal.jpg" alt="Байкал">
-          <div class="element__title-box">
-            <div class="element__title">
-              <h2 class="element__place">Байкал</h2>
-              <button class="element__like"></button>
-            </div>
+          <div class="element__title">
+            <h2 class="element__place">Байкал</h2>
+            <button aria-label="Like" type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/Выборг.jpg" alt="Выборг">
-          <div class="element__title-box">
-            <div class="element__title">
-              <h2 class="element__place">Выборг</h2>
-              <button class="element__like"></button>
-            </div>
+          <div class="element__title">
+            <h2 class="element__place">Выборг</h2>
+            <button aria-label="Like" type="button" class="element__like"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__photo" src="./images/Кировск.jpg" alt="Кировск">
-          <div class="element__title-box">
-            <div class="element__title">
-              <h2 class="element__place">Кировск</h2>
-              <button class="element__like"></button>
-            </div>
+          <div class="element__title">
+            <h2 class="element__place">Кировск</h2>
+            <button aria-label="Like" type="button" class="element__like"></button>
           </div>
         </div>
-          
       </section>
     </main>
     <footer class="footer page__footer">
@@ -94,12 +75,11 @@
   </div>
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close-button">
-      </button>
+      <button aria-label="Close" type="button" class="popup__close-button"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
-        <input type="text" class="popup__input popup__input-title">
-        <input type="text" class="popup__input popup__input-subtitle">
+      <form name="editProfile" class="popup__form">
+        <input name="editProfileName" type="text" class="popup__input popup__input_type_title">
+        <input name="editProfileJob" type="text" class="popup__input popup__input_type_subtitle">
         <button type="submit" class="popup__submit-button">Сохранить</button>
       </form>
     </div>

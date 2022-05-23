@@ -1,18 +1,19 @@
 .element__title {
   display: flex;
-  width: 246px;
-  /* height: 23px; */
-  margin: 25px 15px 31px 21px;
+  max-width: 246px;
+  padding: 25px 15px 31px 21px;
+  background-color: #FFFFFF;
+  border-radius: 0 0 10px 10px;
   }
 
 @media screen and (max-width: 1279px) {
   .element__title {
-    width: 307.5px;
+    max-width: 307.5px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .element__title { 
-    width: 246px;
+    max-width: 246px;
   }
 }
