@@ -21,11 +21,11 @@ function popupClose (popupName) {
 
 profileEditExit.addEventListener('click', () => popupClose(popup))
 
-function popupSubmit (popupName) {
+function popupSubmit (event, popup) {
   event.preventDefault();
-  popupClose(popupName);
+  popupClose(popup);
   profileName.textContent = popupTitle.value;
   profileJob.textContent = popupJob.value;
 }
 
-formElement.addEventListener ('submit', () => popupSubmit(popup))
+formElement.addEventListener ('submit', (event) => popupSubmit(event, popup))
