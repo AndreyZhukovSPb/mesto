@@ -22,6 +22,7 @@
         <button aria-label="Add" type="button" class="profile__add-button"></button>
       </section>
       <section class="elements page__elements">
+        <!-- 
         <div class="element">
           <img class="element__photo" src="./images/Архыз.jpg" alt="Архыз">
           <div class="element__title">
@@ -64,6 +65,7 @@
             <button aria-label="Like" type="button" class="element__like"></button>
           </div>
         </div>
+        -->
       </section>
     </main>
     <footer class="footer page__footer">
@@ -72,7 +74,7 @@
         2022. Андрей Жуков
       </p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_profile">
       <div class="popup__container">
         <button aria-label="Close" type="button" class="popup__close-button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -83,7 +85,42 @@
         </form>
       </div>
     </div>
+
+    <div class="popup popup_type_element">
+      <div class="popup__container">
+        <button aria-label="Close" type="button" class="popup__close-button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form name="editProfile" class="popup__form">
+          <input name="elementPlaceName" type="text" class="popup__input popup__input_type_title" placeholder="Название">
+          <input name="elementPlaceLink" type="text" class="popup__input popup__input_type_subtitle" placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+      </div>
+    </div>  
+
+    <div class="popup popup_type_element-photo">
+      <div class="popup__photo-container">
+        <img src="" alt="Байкал" class="popup__photo">
+        <button aria-label="Close" type="button" class="popup__close-button"></button>
+        <h2 class="popup__text"></h2>
+      </div>
+    </div>    
+
+    
+    
   </div>
+
+  <template id="user-element">
+    <div class="element">
+      <img class="element__photo" src="" alt="">
+      <div class="element__title">
+        <h2 class="element__place"></h2>
+        <button aria-label="Like" type="button" class="element__like"></button>
+      </div>
+      <button aria-label="Delete" type="button" class="element__del-button"></button>
+    </div>  
+  </template>
+
 <script src="./scripts/index.js"></script>
 </body>
 </html>
