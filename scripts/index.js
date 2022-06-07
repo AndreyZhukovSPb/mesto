@@ -146,5 +146,3 @@ const addElement = preElement => {
 initialCards.forEach(addElement);
 
 
-
-
