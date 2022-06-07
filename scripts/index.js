@@ -22,25 +22,31 @@ const popupPhoto = document.querySelector ('.popup__photo')
 const popupText = document.querySelector ('.popup__text')  
 const popupPhotoElementExit = popupPhotoElement.querySelector ('.popup__close-button')
 
-const getLikeByEvent = evt => evt.currentTarget.closest('.element__like')
 const getElementByEvent = evt => evt.currentTarget.closest('.element')
-
 
 function оpenPopup (popupName) {
   popupName.classList.add('popup_opened');
-  popupTitle.value = profileName.textContent;
-  popupJob.value = profileJob.textContent;
 }
 
-profileEdit.addEventListener('click', () => оpenPopup(popupEditProfile))
+profileEdit.addEventListener('click', () => {
+  оpenPopup(popupEditProfile);
+  popupTitle.value = profileName.textContent;
+  popupJob.value = profileJob.textContent;
+})
 
 function closePopup (popupName) {
   popupName.classList.remove('popup_opened');
 }
 
-profileEditExit.addEventListener('click', () => closePopup (popupEditProfile))
+const closeButtons = document.querySelectorAll('.popup__close-button')
 
-function popupSubmit (evt, popup) {
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+  closePopup(popup);
+})
+
+function preventDefaultAndClose (evt, popup) {
   evt.preventDefault();
   closePopup (popup);
 }
@@ -51,12 +57,12 @@ function editProfile() {
 }
 
 profileEditSubmit.addEventListener ('submit', (evt) => {
-  popupSubmit(evt, popupEditProfile);
+  preventDefaultAndClose(evt, popupEditProfile);
   editProfile();
 })
 
 function createUserElement(){
-  let userElement = new Object();
+  const userElement = new Object();
   userElement.name = userElementName.value;
   userElement.link = userElementLink.value;
   addElement(userElement);
@@ -64,13 +70,10 @@ function createUserElement(){
 }
 
 addElementButton.addEventListener('click', () => оpenPopup(popupAddElement))
-addElementExit.addEventListener('click', () => closePopup(popupAddElement))
 addElementSubmit.addEventListener('submit', (evt) => {
-  popupSubmit(evt, popupAddElement);
+  preventDefaultAndClose(evt, popupAddElement);
   createUserElement();
 })
-
-popupPhotoElementExit.addEventListener ('click', () => closePopup(popupPhotoElement))
 
 
 const initialCards = [
@@ -101,8 +104,7 @@ const initialCards = [
 ]; 
 
 function changeLike(evt) {
-  const currentElement = getLikeByEvent(evt);
-  currentElement.classList.toggle('element__like_active');
+  evt.currentTarget.classList.toggle('element__like_active');
 } 
 
 function removeElement (evt) {
@@ -110,17 +112,18 @@ function removeElement (evt) {
   currentElement.remove();
 }
 
-function opnenPhotoPopup (evt) {
+function openPhotoPopup (evt) {
   оpenPopup(popupPhotoElement);
   const currentElement = getElementByEvent(evt);
   popupPhoto.src = currentElement.querySelector('.element__photo').src;
+  popupPhoto.alt = currentElement.querySelector('.element__place').textContent;
   popupText.textContent = currentElement.querySelector('.element__place').textContent;
 }
 
 function addElementListeners (element) {
   element.querySelector('.element__like').addEventListener('click', changeLike);
   element.querySelector('.element__del-button').addEventListener('click', removeElement);
-  element.querySelector('.element__photo').addEventListener('click', opnenPhotoPopup);
+  element.querySelector('.element__photo').addEventListener('click', openPhotoPopup);
 }
 
 const createElement = preElement => {
