@@ -43,7 +43,6 @@ const closeButtons = document.querySelectorAll('.popup__close-button')
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
-  closePopup(popup);
 })
 
 function preventDefaultAndClose (evt, popup) {
@@ -115,9 +114,9 @@ function removeElement (evt) {
 function openPhotoPopup (evt) {
   оpenPopup(popupPhotoElement);
   const currentElement = getElementByEvent(evt);
-  popupPhoto.src = currentElement.querySelector('.element__photo').src;
-  popupPhoto.alt = currentElement.querySelector('.element__place').textContent;
-  popupText.textContent = currentElement.querySelector('.element__place').textContent;
+  popupPhoto.src = evt.target.src;
+  popupPhoto.alt = evt.target.alt;
+  popupText.textContent = evt.target.alt;
 }
 
 function addElementListeners (element) {
