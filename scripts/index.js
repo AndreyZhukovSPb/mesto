@@ -24,8 +24,31 @@ const popupPhotoElementExit = popupPhotoElement.querySelector ('.popup__close-bu
 
 const getElementByEvent = evt => evt.currentTarget.closest('.element')
 
+function addListenerEsc(evt) {
+  if (evt.key === 'Escape') {
+    const currentPopup = document.querySelector('.popup_opened');
+    closePopup(currentPopup);
+  }
+}
+
 function оpenPopup (popupName) {
   popupName.classList.add('popup_opened');
+  document.addEventListener ('keydown', addListenerEsc);
+  const currentCloseButton = popupName.querySelector(config.submitButtonSelector);
+  const currentForm = popupName.querySelector(config.formSelector);
+  const currentInputList = Array.from(popupName.querySelectorAll(config.inputSelector));
+
+  if (popupName != popupPhotoElement) {
+    switchOffButton(currentCloseButton, config);
+    currentInputList.forEach((currentInput) => {
+      hideError (currentForm, currentInput, config);
+    })  
+  };
+}
+
+function closePopup (popupName) {
+  popupName.classList.remove('popup_opened');
+  document.removeEventListener ('keydown', addListenerEsc);
 }
 
 profileEdit.addEventListener('click', () => {
@@ -34,15 +57,15 @@ profileEdit.addEventListener('click', () => {
   popupJob.value = profileJob.textContent;
 })
 
-function closePopup (popupName) {
-  popupName.classList.remove('popup_opened');
-}
-
-const closeButtons = document.querySelectorAll('.popup__close-button')
-
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
+const popups = document.querySelectorAll('.popup')
+popups.forEach((popup) => {
+  popup.addEventListener('click', evt => {  
+    const isOverlay = evt.target.classList.contains('popup');
+    const isCloseBtn = evt.target.classList.contains('popup__close-button');
+    if (isOverlay || isCloseBtn) {
+      closePopup(popup);
+    };
+  })
 })
 
 function preventDefaultAndClose (evt, popup) {
@@ -68,7 +91,16 @@ function createUserElement(){
   addElementSubmit.reset();
 }
 
-addElementButton.addEventListener('click', () => оpenPopup(popupAddElement))
+function resetAddElementInputs() {
+  userElementName.value='';
+  userElementLink.value='';
+}
+
+addElementButton.addEventListener('click', () => {
+  оpenPopup(popupAddElement);
+  resetAddElementInputs();
+});
+
 addElementSubmit.addEventListener('submit', (evt) => {
   preventDefaultAndClose(evt, popupAddElement);
   createUserElement();
@@ -113,7 +145,6 @@ function removeElement (evt) {
 
 function openPhotoPopup (evt) {
   оpenPopup(popupPhotoElement);
-  const currentElement = getElementByEvent(evt);
   popupPhoto.src = evt.target.src;
   popupPhoto.alt = evt.target.alt;
   popupText.textContent = evt.target.alt;
@@ -143,3 +174,16 @@ const addElement = preElement => {
 }
   
 initialCards.forEach(addElement);
+
+
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__input_invalid', 
+  errorClass: 'error_type_visible'
+}
+
+enableValidation(config);
