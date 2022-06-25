@@ -10,7 +10,6 @@ const profileEditExit = popupEditProfile.querySelector ('.popup__close-button')
 
 const popupAddElement = document.querySelector ('.popup_type_element') 
 const profileEditButton = document.querySelector('.profile__add-button')
-// const addElementExit = popupAddElement.querySelector ('.popup__close-button')
 const popupForm = popupAddElement.querySelector ('.popup__form')
 
 const elementsGroup = document.querySelector('.elements');
@@ -34,16 +33,6 @@ function addListenerEsc(evt) {
 function оpenPopup (popupName) {
   popupName.classList.add('popup_opened');
   document.addEventListener ('keydown', addListenerEsc);
-  const currentCloseButton = popupName.querySelector(config.submitButtonSelector);
-  const currentForm = popupName.querySelector(config.formSelector);
-  const currentInputList = Array.from(popupName.querySelectorAll(config.inputSelector));
-
-  if (popupName == popupAddElement || popupName == popupEditProfile) {
-    switchOffButton(currentCloseButton, config);
-    currentInputList.forEach((currentInput) => {
-      hideError (currentForm, currentInput, config);
-    })  
-  };
 }
 
 function closePopup (popupName) {
@@ -55,6 +44,15 @@ profileEdit.addEventListener('click', () => {
   оpenPopup(popupEditProfile);
   popupTitle.value = profileName.textContent;
   popupJob.value = profileJob.textContent;
+
+  const currentCloseButton = popupEditProfile.querySelector(config.submitButtonSelector);
+  const currentForm = popupEditProfile.querySelector(config.formSelector);
+  const currentInputList = Array.from(popupEditProfile.querySelectorAll(config.inputSelector));
+  switchOffButton(currentCloseButton, config);
+  currentInputList.forEach((currentInput) => {
+    hideError (currentForm, currentInput, config);
+  });
+  
 })
 
 const popups = document.querySelectorAll('.popup')
@@ -99,6 +97,14 @@ function resetAddElementInputs() {
 profileEditButton.addEventListener('click', () => {
   оpenPopup(popupAddElement);
   resetAddElementInputs();
+
+  const currentCloseButton = popupAddElement.querySelector(config.submitButtonSelector);
+  const currentForm = popupAddElement.querySelector(config.formSelector);
+  const currentInputList = Array.from(popupAddElement.querySelectorAll(config.inputSelector));
+  switchOffButton(currentCloseButton, config);
+  currentInputList.forEach((currentInput) => {
+    hideError (currentForm, currentInput, config);
+  })
 });
 
 popupForm.addEventListener('submit', (evt) => {
@@ -165,7 +171,6 @@ const createElement = preElement => {
   newElement.querySelector('.element__place').textContent = preElement.name;
   setEventListeners(newElement);
   return newElement;
-  
 };
 
 const addElement = preElement => {
@@ -174,7 +179,6 @@ const addElement = preElement => {
 }
   
 initialCards.forEach(addElement);
-
 
 
 const config = {
