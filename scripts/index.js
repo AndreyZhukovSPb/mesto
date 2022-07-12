@@ -1,5 +1,6 @@
-import { FormValidator } from './validate.js'
-import { Card } from './card.js'
+import { FormValidator } from './FormValidator.js'
+import { Card } from './Card.js'
+import { оpenPopup, closePopup} from './utils.js'
 
 const profileEdit = document.querySelector ('.profile__edit-button')
 const profileName =  document.querySelector ('.profile__title')
@@ -25,24 +26,6 @@ const config = {
   inactiveButtonClass: 'popup__submit-button_inactive',
   inputErrorClass: 'popup__input_invalid', 
   errorClass: 'error_type_visible'
-}
-
-
-function addListenerEsc(evt) {
-  if (evt.key === 'Escape') {
-    const currentPopup = document.querySelector('.popup_opened');
-    closePopup(currentPopup);
-  }
-}
-
-function оpenPopup (popupName) {
-  popupName.classList.add('popup_opened');
-  document.addEventListener ('keydown', addListenerEsc);
-}
-
-function closePopup (popupName) {
-  popupName.classList.remove('popup_opened');
-  document.removeEventListener ('keydown', addListenerEsc);
 }
 
 profileEdit.addEventListener('click', () => {
@@ -109,7 +92,6 @@ popupForm.addEventListener('submit', (evt) => {
 })
 
 function createCardUserElement() {
-  console.log ('test user card')
   const userData = new Object();
   userData.name = userElementName.value;
   userData.link = userElementLink.value;

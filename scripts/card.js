@@ -1,3 +1,5 @@
+import { оpenPopup } from './utils.js'
+
 export class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -16,27 +18,31 @@ export class Card {
 
   createCard() {
     this._newCard = this._getTemplate();
-    this._newCard.querySelector('.element__photo').src = this._link;
-    this._newCard.querySelector('.element__photo').alt = this._name;
     this._newCard.querySelector('.element__place').textContent = this._name;
+    this._cardImage = this._newCard.querySelector('.element__photo');
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._likeButton = this._newCard.querySelector('.element__like');
+    this._delButton = this._newCard.querySelector('.element__del-button');
+
     this._setCardEventListeners();
     return this._newCard;
   };
 
   _setCardEventListeners() {
-    this._newCard.querySelector('.element__like').addEventListener('click', () => {
+    this._likeButton.addEventListener('click', () => {
       this._changeCardLike();
     });
-    this._newCard.querySelector('.element__del-button').addEventListener('click', () => {
+    this._delButton.addEventListener('click', () => {
       this._deleteCard();
     });
-    this._newCard.querySelector('.element__photo').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._openCardPhotoPopup();
     });
   };
 
   _changeCardLike() {
-    this._newCard.querySelector('.element__like').classList.toggle('element__like_active');
+    this._likeButton.classList.toggle('element__like_active');
   };
 
   _deleteCard() {
@@ -44,10 +50,12 @@ export class Card {
   };
 
   _openCardPhotoPopup() {
-      оpenPopup(popupPhotoElement);
-      popupPhoto.src = this._link;
-      popupPhoto.alt = this._name;
-      popupText.textContent = this._name;
-      console.log('test photo popup');
+    const popupPhoto = document.querySelector('.popup__photo');
+    const popupText = document.querySelector('.popup__text');
+    popupPhoto.src = this._link;
+    popupPhoto.alt = this._name;
+    popupText.textContent = this._name;
+    this._popup = document.querySelector('.popup_type_element-photo');
+    оpenPopup(this._popup);
   };
 };
