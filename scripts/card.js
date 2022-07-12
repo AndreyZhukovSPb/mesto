@@ -8,7 +8,6 @@ export class Card {
     this._popupPhoto = document.querySelector('.popup__photo');
     this._popupText = document.querySelector('.popup__text');
     this._popup = document.querySelector('.popup_type_element-photo');
-
   };
 
   _getTemplate() {
