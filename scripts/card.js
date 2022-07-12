@@ -5,6 +5,10 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = templateSelector;
+    this._popupPhoto = document.querySelector('.popup__photo');
+    this._popupText = document.querySelector('.popup__text');
+    this._popup = document.querySelector('.popup_type_element-photo');
+
   };
 
   _getTemplate() {
@@ -50,12 +54,9 @@ export class Card {
   };
 
   _openCardPhotoPopup() {
-    const popupPhoto = document.querySelector('.popup__photo');
-    const popupText = document.querySelector('.popup__text');
-    popupPhoto.src = this._link;
-    popupPhoto.alt = this._name;
-    popupText.textContent = this._name;
-    this._popup = document.querySelector('.popup_type_element-photo');
+    this._popupPhoto.src = this._link;
+    this._popupPhoto.alt = this._name;
+    this._popupText.textContent = this._name;
     оpenPopup(this._popup);
   };
 };

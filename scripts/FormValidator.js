@@ -46,7 +46,7 @@ export class FormValidator {
     if (!testInput.validity.valid) {
       this._showError(testInput, testInput.validationMessage);
     } else {
-      this.hideError(testInput);
+      this._hideError(testInput);
     }
   };
 
@@ -58,10 +58,17 @@ export class FormValidator {
   };
 
 
-  hideError = (testInput) => {
+  _hideError = (testInput) => {
     const inputError = this._formElement.querySelector(`.${testInput.id}-error`);
     testInput.classList.remove(this._inputErrorClass);
     inputError.textContent = '';
     inputError.classList.remove(this._errorClass);
   };
+
+  resetValidation() {
+    this.switchOffButton();
+    this._inputList.forEach((inputElement) => {
+      this._hideError(inputElement);
+    }) 
+  }
 }

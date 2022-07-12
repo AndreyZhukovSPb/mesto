@@ -1,4 +1,4 @@
-function addListenerEsc(evt) {
+function handleEscape(evt) {
   if (evt.key === 'Escape') {
     const currentPopup = document.querySelector('.popup_opened');
     closePopup(currentPopup);
@@ -7,12 +7,12 @@ function addListenerEsc(evt) {
 
 function оpenPopup (popupName) {
   popupName.classList.add('popup_opened');
-  document.addEventListener ('keydown', addListenerEsc);
+  document.addEventListener ('keydown', handleEscape);
 }
 
 function closePopup (popupName) {
   popupName.classList.remove('popup_opened');
-  document.removeEventListener ('keydown', addListenerEsc);
+  document.removeEventListener ('keydown', handleEscape);
 }
 
 export {оpenPopup, closePopup}
