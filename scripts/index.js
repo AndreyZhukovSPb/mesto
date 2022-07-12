@@ -1,3 +1,6 @@
+import { FormValidator } from './validate.js'
+import { Card } from './card.js'
+
 const profileEdit = document.querySelector ('.profile__edit-button')
 const profileName =  document.querySelector ('.profile__title')
 const profileJob = document.querySelector ('.profile__subtitle')
@@ -6,7 +9,6 @@ const popupEditProfile = document.querySelector ('.popup_type_profile')
 const popupTitle = popupEditProfile.querySelector ('.popup__input_type_title')
 const popupJob = popupEditProfile.querySelector ('.popup__input_type_subtitle')
 const profileForm = popupEditProfile.querySelector ('.popup__form')
-const profileEditExit = popupEditProfile.querySelector ('.popup__close-button')
 
 const popupAddElement = document.querySelector ('.popup_type_element') 
 const profileEditButton = document.querySelector('.profile__add-button')
@@ -16,12 +18,15 @@ const elementsGroup = document.querySelector('.elements');
 const userElementName = popupAddElement.querySelector ('.popup__input_type_title')
 const userElementLink = popupAddElement.querySelector ('.popup__input_type_subtitle')
 
-const popupPhotoElement = document.querySelector ('.popup_type_element-photo') 
-const popupPhoto = document.querySelector ('.popup__photo')
-const popupText = document.querySelector ('.popup__text')  
-const popupPhotoElementExit = popupPhotoElement.querySelector ('.popup__close-button')
+const config = { 
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_inactive',
+  inputErrorClass: 'popup__input_invalid', 
+  errorClass: 'error_type_visible'
+}
 
-const getCardByEvent = evt => evt.currentTarget.closest('.element')
 
 function addListenerEsc(evt) {
   if (evt.key === 'Escape') {
@@ -44,15 +49,13 @@ profileEdit.addEventListener('click', () => {
   оpenPopup(popupEditProfile);
   popupTitle.value = profileName.textContent;
   popupJob.value = profileJob.textContent;
-
-  const currentCloseButton = popupEditProfile.querySelector(config.submitButtonSelector);
   const currentForm = popupEditProfile.querySelector(config.formSelector);
   const currentInputList = Array.from(popupEditProfile.querySelectorAll(config.inputSelector));
-  switchOffButton(currentCloseButton, config);
+  const newCardFormValidator = new FormValidator (config, currentForm);
+  newCardFormValidator.switchOffButton();
   currentInputList.forEach((currentInput) => {
-    hideError (currentForm, currentInput, config);
+    newCardFormValidator.hideError(currentInput);
   });
-  
 })
 
 const popups = document.querySelectorAll('.popup')
@@ -81,39 +84,42 @@ profileForm.addEventListener ('submit', (evt) => {
   editProfile();
 })
 
-function createUserElement(){
-  const userElement = new Object();
-  userElement.name = userElementName.value;
-  userElement.link = userElementLink.value;
-  addElement(userElement);
-  popupForm.reset();
-}
-
 function resetAddElementInputs() {
   userElementName.value='';
   userElementLink.value='';
 }
 
+
 profileEditButton.addEventListener('click', () => {
   оpenPopup(popupAddElement);
   resetAddElementInputs();
-
-  const currentCloseButton = popupAddElement.querySelector(config.submitButtonSelector);
   const currentForm = popupAddElement.querySelector(config.formSelector);
   const currentInputList = Array.from(popupAddElement.querySelectorAll(config.inputSelector));
-  switchOffButton(currentCloseButton, config);
+  const newCardFormValidator = new FormValidator (config, currentForm);
+  newCardFormValidator.switchOffButton();
   currentInputList.forEach((currentInput) => {
-    hideError (currentForm, currentInput, config);
-  })
+    newCardFormValidator.hideError(currentInput);
+  });
+
 });
 
 popupForm.addEventListener('submit', (evt) => {
   preventDefaultAndClose(evt, popupAddElement);
-  createUserElement();
+  createCardUserElement();
 })
 
+function createCardUserElement() {
+  console.log ('test user card')
+  const userData = new Object();
+  userData.name = userElementName.value;
+  userData.link = userElementLink.value;
+  const userCard = new Card (userData, '#user-element');
+  const userCardElement = userCard.createCard();
+  elementsGroup.prepend(userCardElement);
+  popupForm.reset();
+}
 
-const initialCards = [
+const data = [
   {
     name: 'Архыз',
     link: './images/Архыз.jpg'
@@ -140,54 +146,16 @@ const initialCards = [
   }
 ]; 
 
-function changeLike(evt) {
-  evt.currentTarget.classList.toggle('element__like_active');
-} 
-
-function removeCard (evt) {
-  const currentCard = getCardByEvent(evt);
-  currentCard.remove();
-}
-
-function openPhotoPopup (evt) {
-  оpenPopup(popupPhotoElement);
-  popupPhoto.src = evt.target.src;
-  popupPhoto.alt = evt.target.alt;
-  popupText.textContent = evt.target.alt;
-}
-
-function setEventListeners (element) {
-  element.querySelector('.element__like').addEventListener('click', changeLike);
-  element.querySelector('.element__del-button').addEventListener('click', removeCard);
-  element.querySelector('.element__photo').addEventListener('click', openPhotoPopup);
-}
-
-const createElement = preElement => {
-  const userTemplate = document.querySelector('#user-element').content;
-  const newElement = userTemplate.querySelector('.element').cloneNode(true);
-  const elementPhoto = newElement.querySelector('.element__photo');
-  elementPhoto.src = preElement.link;
-  elementPhoto.alt = preElement.name;
-  newElement.querySelector('.element__place').textContent = preElement.name;
-  setEventListeners(newElement);
-  return newElement;
-};
-
-const addElement = preElement => {
-  const newElement = createElement(preElement);
-  elementsGroup.prepend(newElement);
-}
+data.forEach((item) => {
+  const card = new Card(item, '#user-element');
+  const cardElement = card.createCard();
+  elementsGroup.prepend(cardElement);
   
-initialCards.forEach(addElement);
+});
 
+const formValidationList = Array.from(document.querySelectorAll('.popup__form'));
+formValidationList.forEach((formValidation) => {
+  const formValidationElement = new FormValidator (config, formValidation);
+  formValidationElement.enableValidation();
+})
 
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_inactive',
-  inputErrorClass: 'popup__input_invalid', 
-  errorClass: 'error_type_visible'
-}
-
-enableValidation(config);
