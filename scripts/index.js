@@ -1,5 +1,5 @@
 import { FormValidator } from './FormValidator.js'
-import { Card } from './newCard.js'
+import { Card } from './Card.js'
 import { оpenPopup, closePopup} from './utils.js'
 
 const profileEdit = document.querySelector ('.profile__edit-button')
