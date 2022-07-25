@@ -43,7 +43,7 @@ export const data = [
     link: viborgImage
   },
   {
-    name: 'Кировск',
+    name: 'Кировск?',
     link: kirovskImage
   }
 ];

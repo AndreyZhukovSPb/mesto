@@ -1,4 +1,4 @@
-import './../pages/index.css';
+import './index.css';
 
 import { FormValidator } from '../components/FormValidator.js'
 import { Card } from '../components/Card.js'
@@ -17,10 +17,10 @@ import { data } from '../utils/constants.js'
 const popupProfileEdit = 
 new PopupWithForm({
   popupSelector: '.popup_type_profile',
-  submitFunction: (addItem) => {
+  submitFunction: (newItem) => {
     currentUserInfo.setUserInfo({
-      name: addItem.name,
-      job: addItem.link,
+      name: newItem.editProfileName,
+      job: newItem.editProfileJob,
     })
   },
 })
@@ -83,10 +83,3 @@ formProfileValidator.enableValidation();
 const formCard = document.querySelector('#formCard');
 const formCardValidator = new FormValidator (config, formCard);
 formCardValidator.enableValidation();
-
-
-
-// перенести константы в другой файл
-// проверить по чек листу
-// создать git ignore
-// 

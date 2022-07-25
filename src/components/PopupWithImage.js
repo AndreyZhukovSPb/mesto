@@ -14,11 +14,4 @@ export class PopupWithImage extends Popup { //
     this._popupPhoto.alt = data.link;    
   }
 
-  close() {
-    super.close();
-  }
-
-  setEventListeners() {
-    super.setEventListeners();
-  }
 }

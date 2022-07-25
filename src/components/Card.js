@@ -4,9 +4,9 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = templateSelector;
-    this._popupPhoto = document.querySelector('.popup__photo');
-    this._popupText = document.querySelector('.popup__text');
-    this._popup = document.querySelector('.popup_type_element-photo');
+    // this._popupPhoto = document.querySelector('.popup__photo');
+    // this._popupText = document.querySelector('.popup__text');
+    // this._popup = document.querySelector('.popup_type_element-photo');
     this._handleCardClick = handleCardClick;
   };
 
@@ -49,5 +49,6 @@ export class Card {
 
   _deleteCard() {
     this._newCard.remove();
+    this._newCard = null;
   };
 };

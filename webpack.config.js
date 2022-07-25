@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    build: './src/scripts/index.js',
+    build: './src/pages/index.js',
   },
   output: {
     filename: "main.js",
@@ -45,12 +45,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource'
-        
-        
-      },
-
-      
-        
+      },        
     ]
   },
 
