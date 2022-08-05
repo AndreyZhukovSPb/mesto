@@ -11,6 +11,8 @@
   background-color: transparent;
   cursor: pointer;
   transition: opacity 1s ease;
+  
+  visibility: hidden;
 }
 
 .element__del-button:hover {

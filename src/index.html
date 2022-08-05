@@ -12,11 +12,11 @@
     </header>
     <main class="content">
       <section class="profile page__profile">
-        <img src="<%=require('./images/Kusto.png')%>" class="profile__avatar" alt="Кусто">
+        <img class="profile__avatar" alt="Кусто">
         <div class="profile__title-box">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button aria-label="Edit" type="button" class="profile__edit-button"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button aria-label="Add" type="button" class="profile__add-button"></button>
       </section>
@@ -52,11 +52,11 @@
         <h2 class="popup__title">Новое место</h2>
         <form id="formCard" name="cardFom" class="popup__form" novalidate>
           <div class="input-container">
-            <input id="element-name-input" name="elementPlaceName" type="text" class="popup__input popup__input_type_title" placeholder="Название" required minlength="2" maxlength="30">
+            <input id="element-name-input" name="name" type="text" class="popup__input popup__input_type_title" placeholder="Название" required minlength="2" maxlength="30">
             <span class="element-name-input-error error"></span>
           </div>
           <div class="input-container">
-            <input id="element-link-input" name="elementPlaceLink" class="popup__input popup__input_type_subtitle" placeholder="Ссылка на картинку" required type="url">
+            <input id="element-link-input" name="link" class="popup__input popup__input_type_subtitle" placeholder="Ссылка на картинку" required type="url">
             <span class="element-link-input-error error"></span>
           </div>
           <button type="submit" class="popup__submit-button">Сохранить</button>
@@ -69,17 +69,50 @@
         <button aria-label="Close" type="button" class="popup__close-button "></button>
         <h2 class="popup__text"></h2>
       </div>
-    </div>    
+    </div>
+    <div class="popup popup_type_delete">
+      <div class="popup__container popup__container_type_del">
+        <button aria-label="Close" type="button" class="popup__close-button"></button>
+        <h2 class="popup__title popup__title_type_del">Вы уверены?</h2>
+        <form id="delFunction" name="cardFom" class="popup__form" novalidate>
+          <button type="submit" class="popup__submit-button">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_edit-picture">
+      <div class="popup__container popup__container_type_edit-picture">
+        <button aria-label="Close" type="button" class="popup__close-button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form id="editProfilePicture" name="editPictureProfile" class="popup__form" novalidate>
+          <div class="input-container">
+            <input id="editProfilePicture-input" name="link" class="popup__input popup__input_type_subtitle" placeholder="Ссылка на картинку" required type="url">
+            <span class="editProfilePicture-input-error error"></span>
+          </div>
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+      </div>
+    </div>  
+
   </div>
   <template id="user-element">
     <div class="element">
       <img class="element__photo">
       <div class="element__title">
         <h2 class="element__place"></h2>
-        <button aria-label="Like" type="button" class="element__like"></button>
+        <div class="element__like-container">
+          <button aria-label="Like" type="button" class="element__like"></button>
+          <span class="element__like-counter">0</span>
+        </div>  
       </div>
       <button aria-label="Delete" type="button" class="element__del-button"></button>
     </div>  
   </template>
 </body>
 </html>
+
+
+<!--
+src="<%=require('./images/Kusto.png')%>"
+
+-->

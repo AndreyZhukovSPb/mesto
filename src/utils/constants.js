@@ -5,6 +5,12 @@ export const popupJob = popupEditProfile.querySelector ('.popup__input_type_subt
 export const cardAddButton = document.querySelector('.profile__add-button')
 export const cardListSelector = '.elements';
 
+
+export const profileTitle= document.querySelector('.profile__title');
+export const profileSubtitle= document.querySelector('.profile__subtitle');
+export const profileAvatar= document.querySelector('.profile__avatar');
+
+
 export const config = { 
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -21,7 +27,7 @@ const baikalImage = new URL('../images/Baikal.jpg', import.meta.url);
 const viborgImage = new URL('../images/Выборг.jpg', import.meta.url);
 const kirovskImage = new URL('../images/Кировск.jpg', import.meta.url);
 
-export const data = [
+export const initialCards = [
   {
     name: 'Архыз',
     link: arhizImage
@@ -43,7 +49,7 @@ export const data = [
     link: viborgImage
   },
   {
-    name: 'Кировск?',
+    name: 'Кировск',
     link: kirovskImage
   }
 ];
