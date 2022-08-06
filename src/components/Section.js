@@ -8,13 +8,9 @@ export class Section {
     this._container.prepend(item);
   };
 
-  renderItems(initailArray) {
+  renderItems(initailArray, userId) {
       initailArray.forEach(item => {
-      this._renderer(item);
+      this._renderer(item, userId);
     });
-  }
-
-  tetsFunction() {
-    console.log('test2');
   }
 }

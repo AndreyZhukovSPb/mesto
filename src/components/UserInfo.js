@@ -15,9 +15,12 @@ export class UserInfo {
   setUserInfo({title, job}) {
     this._name.textContent = title;
     this._job.textContent = job;
+    // this._id = id;
+    // console.log(this._id);
   }
 
   setUserAvatar(link) {
     this._avatar.src = link;
   }  
+  
 }
